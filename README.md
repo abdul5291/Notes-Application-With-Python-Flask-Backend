@@ -7,8 +7,8 @@ For database i have only used a text file and have not created database or used 
 
 To operate this project:-
 1. Flask
-   > pip install Flask
-   > Type Above Command In terminal
+   -> pip install Flask
+   -> Type Above Command In terminal
 2. After Installing Flask run the main.py
 3. Copy paste the URL appear in terminal to your browser
 4. Your Notes Application is Reaady to Go
