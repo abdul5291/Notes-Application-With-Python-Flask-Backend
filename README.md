@@ -1,9 +1,9 @@
 In this Project I have Created a Notes App.
 
-Backend -> Python, Flask, Jinja tempplates
+Backend -> Python, Flask, Jinja templates
 forntend -> HTML, CSS, Github Copilot
 
-For database i have only used a text file and have not created and database or used mongoDB, Because Project was not that vast
+For database i have only used a text file and have not created database or used mongoDB, Because Project was not that vast
 
 To operate this project:-
 1. Flask
