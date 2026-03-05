@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes Application</title>
+  <style>
+    body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+nav {
+  background: #fff;
+  margin: 2em auto 1.5em auto;
+  padding: 1em 2em;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+  max-width: 650px;
+  justify-content: flex-start;
+}
+
+nav::before {
+  content: "📝 NotesApp";
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #4a90e2;
+  margin-right: 2em;
+  letter-spacing: 1px;
+}
+
+nav a button {
+  background: linear-gradient(90deg, #4a90e2 0%, #50e3c2 100%);
+  color: white;
+  border: none;
+  padding: 0.6em 1.5em;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(80, 227, 194, 0.12);
+  transition: background 0.2s, transform 0.15s;
+}
+
+nav a button:hover {
+  background: linear-gradient(90deg, #357ab8 0%, #38bfa7 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 2em auto;
+  max-width: 650px;
+}
+
+li {
+  background: #fff;
+  margin-bottom: 1.2em;
+  padding: 1.3em 1.2em;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.09);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: box-shadow 0.2s, transform 0.18s;
+  position: relative;
+  overflow: hidden;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, #4a90e2 0%, #50e3c2 100%);
+  border-radius: 10px 0 0 10px;
+  opacity: 0.7;
+}
+
+li:hover {
+  box-shadow: 0 6px 24px rgba(44, 62, 80, 0.16);
+  transform: translateY(-2px) scale(1.01);
+}
+
+li button {
+  background: linear-gradient(90deg, #e53935 0%, #ff7675 100%);
+  color: #fff;
+  border: none;
+  padding: 0.5em 1.2em;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(229, 57, 53, 0.13);
+  transition: background 0.2s, transform 0.15s;
+}
+
+li button:hover {
+  background: linear-gradient(90deg, #b71c1c 0%, #ff7675 100%);
+  transform: scale(1.06);
+}
+.edit-btn,
+.delete-btn {
+  border: none;
+  padding: 0.5em 1.3em;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  margin: 0.5em 0.5em 0.5em 0;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.10);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  outline: none;
+}
+
+.edit-btn {
+  background: linear-gradient(90deg, #00b894 0%, #fbc531 100%);
+  color: #fff;
+}
+
+.edit-btn:hover,
+.edit-btn:focus {
+  background: linear-gradient(90deg, #009e72 0%, #e1b000 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 16px rgba(0, 184, 148, 0.18);
+}
+
+.delete-btn {
+  background: linear-gradient(90deg, #e53935 0%, #ff7675 100%);
+  color: #fff;
+}
+
+.delete-btn:hover,
+.delete-btn:focus {
+  background: linear-gradient(90deg, #b71c1c 0%, #ff7675 100%);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 16px rgba(229, 57, 53, 0.18);
+}
+
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/create"><button>Create</button></a>
+    <a href="/"><button>Home</button></a>
+  </nav>
+
+  <span>
+    <ul>
+      {% for line in data %}
+        {% if line.strip() %}
+          <li>{{line}}</li>
+          <a href="{{ url_for('edit', line_id=loop.index0 ) }}"><button style="background: linear-gradient(90deg, #00b894 0%, #fbc531 100%); color: #fff; border: none; padding: 0.5em 1.2em; border-radius: 6px; font-size: 1em; font-weight: 500; box-shadow: 0 2px 8px rgba(44,62,80,0.10); cursor: pointer; margin-right: 0.5em;">Edit</button></a>
+          <form action="{{ url_for('delete', line_id=loop.index0) }}" method="POST" style="display: inline;">
+            <button style="background: linear-gradient(90deg, #e53935 0%, #ff7675 100%); color: #fff; border: none; padding: 0.5em 1.2em; border-radius: 6px; font-size: 1em; font-weight: 500; box-shadow: 0 2px 8px rgba(229,57,53,0.13); cursor: pointer;" type="submit" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+        </form>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </span>
+  
+</body>
+</html>
