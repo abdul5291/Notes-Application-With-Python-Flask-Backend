@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+nav {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.10);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2em;
+  padding: 1em 2em;
+  margin: 2em auto 2.5em auto;
+  max-width: 420px;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+nav a button {
+  background: linear-gradient(90deg, #00b894 0%, #fbc531 100%);
+  color: #fff;
+  border: none;
+  padding: 0.6em 1.5em;
+  border-radius: 6px;
+  font-size: 1em;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+nav a button:hover {
+  background: linear-gradient(90deg, #009e72 0%, #e1b000 100%);
+  transform: translateY(-2px) scale(1.05);
+}
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+form {
+  background: #fff;
+  max-width: 480px;
+  margin: 3em auto;
+  padding: 2em 2.5em 1.5em 2.5em;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+label {
+  font-weight: 500;
+  color: #4a90e2;
+  margin-bottom: 0.3em;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 0.7em 1em;
+  border: 1px solid #dbeafe;
+  border-radius: 6px;
+  font-size: 1em;
+  background: #f8fafc;
+  transition: border 0.2s;
+  margin-bottom: 0.5em;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border: 1.5px solid #4a90e2;
+  outline: none;
+  background: #fff;
+}
+
+button[type="submit"] {
+  background: linear-gradient(90deg, #4a90e2 0%, #50e3c2 100%);
+  color: #fff;
+  border: none;
+  padding: 0.7em 1.5em;
+  border-radius: 6px;
+  font-size: 1em;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(80, 227, 194, 0.12);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-right: 0.7em;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(90deg, #357ab8 0%, #38bfa7 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+form a {
+  display: inline-block;
+  background: linear-gradient(90deg, #bdbdbd 0%, #e0e0e0 100%);
+  color: #333;
+  text-decoration: none;
+  padding: 0.7em 1.5em;
+  border-radius: 6px;
+  font-size: 1em;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(189, 189, 189, 0.10);
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+form a:hover {
+  background: linear-gradient(90deg, #757575 0%, #bdbdbd 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/create"><button>Create</button></a>
+    <a href="/"><button>Home</button></a>
+  </nav>
+
+  <form method="POST">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" value="{{ title }}" required>
+    <br><br>
+
+    <label for="content">Content:</label><br>
+    <textarea id="content" name="content" rows="4" cols="50" required>{{ content }}</textarea>
+    <br><br>
+    
+    <button type="submit">Save Changes</button>
+    <a href="{{ url_for('home') }}">Cancel</a>
+  </form>
+  </form>
+</body>
+</html>

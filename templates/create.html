@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Note Creation</title>
+  <style>
+    body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin: 2em 0 2.5em 0;
+}
+
+nav a button {
+  background: linear-gradient(90deg, #00b894 0%, #fbc531 100%);
+  color: #fff;
+  border: none;
+  padding: 0.6em 1.5em;
+  border-radius: 6px;
+  font-size: 1em;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+nav a button:hover {
+  background: linear-gradient(90deg, #009e72 0%, #e1b000 100%);
+  transform: translateY(-2px) scale(1.05);
+}
+
+form {
+  background: #fff;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 2em 2.5em 1.5em 2.5em;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.7em 1em;
+  border: 1px solid #dbeafe;
+  border-radius: 6px;
+  font-size: 1em;
+  background: #f8fafc;
+  transition: border 0.2s;
+}
+
+input[type="text"]:focus {
+  border: 1.5px solid #00b894;
+  outline: none;
+  background: #fff;
+}
+
+form button[type="submit"],
+form button:not([type]) {
+  background: linear-gradient(90deg, #4a90e2 0%, #50e3c2 100%);
+  color: #fff;
+  border: none;
+  padding: 0.7em 1.5em;
+  border-radius: 6px;
+  font-size: 1em;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(80, 227, 194, 0.12);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 0.5em;
+}
+
+form button[type="submit"]:hover,
+form button:not([type]):hover {
+  background: linear-gradient(90deg, #357ab8 0%, #38bfa7 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/create"><button>Create</button></a>
+    <a href="/"><button>Home</button></a>
+  </nav>
+  
+  <form action="/create" method="post">
+    <input type="text" name="title" id="">
+    <input type="text" name="content">
+    <button>Create</button>
+  </form>
+</body>
+</html>
